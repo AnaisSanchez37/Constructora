@@ -105,6 +105,7 @@ namespace Constructora
             this.btnGasto.TabIndex = 7;
             this.btnGasto.Text = "Gasto";
             this.btnGasto.UseVisualStyleBackColor = true;
+            this.btnGasto.Click += new System.EventHandler(this.btnGasto_Click);
             // 
             // btnPago
             // 

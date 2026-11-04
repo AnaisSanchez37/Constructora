@@ -60,7 +60,14 @@ namespace Constructora
             {
                 formDisenio.ShowDialog();
             }
-        }    }
+        }
+
+        private void btnGasto_Click(object sender, EventArgs e)
+        {
+            Gasto formGasto = new Gasto();
+            formGasto.ShowDialog();
+        }
+    }
 }
 
 
