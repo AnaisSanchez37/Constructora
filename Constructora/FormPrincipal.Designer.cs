@@ -116,6 +116,7 @@ namespace Constructora
             this.btnPago.TabIndex = 8;
             this.btnPago.Text = "Pago";
             this.btnPago.UseVisualStyleBackColor = true;
+            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
             // 
             // btnDisenio
             // 

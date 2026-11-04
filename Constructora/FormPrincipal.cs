@@ -67,6 +67,13 @@ namespace Constructora
             Gasto formGasto = new Gasto();
             formGasto.ShowDialog();
         }
+
+        private void btnPago_Click(object sender, EventArgs e)
+        {
+            Pago formPago= new Pago();
+            formPago.ShowDialog();
+
+        }
     }
 }
 
