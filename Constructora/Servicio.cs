@@ -48,12 +48,16 @@ namespace Constructora
         {
             try
             {
-                if (!ValidarDatos()) return;
+                if (!ValidarDatos())
+                {
+                    MessageBox.Show("Error al agregar, ya exixte un servicio con etsre nombre");
+                    return;
+                }
                 dao.InsertarServicio(txtNombre.Text.Trim());
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { MessageBox.Show("Error al agregar: " + ex.Message); }
+            catch (Exception ex) { MessageBox.Show("Error al agregar servicio, ya existe un servicio con este nombre"); }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -66,7 +70,7 @@ namespace Constructora
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { MessageBox.Show("Error al modificar: " + ex.Message); }
+            catch (Exception ex) { MessageBox.Show("Error al agregar servicio, ya existe un servicio con este nombre"); }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

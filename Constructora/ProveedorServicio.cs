@@ -14,6 +14,20 @@ namespace Constructora
         public ProveedorServicio()
         {
             InitializeComponent();
+            CargarComboBoxes();
+        }
+
+        private void CargarComboBoxes()
+        {
+            cmbProveedor.DataSource = dao.ObtenerProveedor();
+            cmbProveedor.DisplayMember = "NombreProveedor";
+            cmbProveedor.ValueMember = "IdProveedor";
+            cmbProveedor.SelectedIndex = -1;
+
+            cmbServicio.DataSource = dao.ObtenerServicio();
+            cmbServicio.DisplayMember = "NombreServicio";
+            cmbServicio.ValueMember = "IdServicio";
+            cmbServicio.SelectedIndex = -1;
         }
 
         private void ProveedorServicio_Load(object sender, EventArgs e)
@@ -27,6 +41,7 @@ namespace Constructora
                 cmbServicio.ValueMember = "IdServicio";
                 cmbServicio.DataSource = new ServicioDAO().consultarDatos();
                 CargarTabla();
+                CargarComboBoxes();
                 LimpiarDatos();
             }
             catch (Exception ex) { /*MessageBox.Show("Error al consultar datos: " + ex.Message); */}
@@ -48,12 +63,12 @@ namespace Constructora
         {
             if (cmbProveedor.SelectedValue == null || cmbServicio.SelectedValue == null)
             {
-                //MessageBox.Show("Seleccione un proveedor y un servicio. Regístrelos primero si las listas están vacías.");
+                MessageBox.Show("Seleccione un proveedor y un servicio. Regístrelos primero si las listas están vacías.");
                 return false;
             }
             if (dao.ExisteRelacion(Convert.ToInt64(cmbProveedor.SelectedValue), Convert.ToInt64(cmbServicio.SelectedValue), idSeleccionado))
             {
-                //MessageBox.Show("Este servicio ya está registrado para el proveedor.");
+                MessageBox.Show("Este servicio ya está registrado para el proveedor.");
                 return false;
             }
             return true;
@@ -66,6 +81,7 @@ namespace Constructora
                 if (!ValidarDatos()) return;
                 dao.InsertarProveedorServicio(Convert.ToInt64(cmbProveedor.SelectedValue), Convert.ToInt64(cmbServicio.SelectedValue), nudCostoBase.Value);
                 CargarTabla();
+                CargarComboBoxes();
                 LimpiarDatos();
             }
             catch (Exception ex) { /*MessageBox.Show("Error al agregar: " + ex.Message);*/ }
@@ -79,6 +95,7 @@ namespace Constructora
                 if (!ValidarDatos()) return;
                 dao.ModificarProveedorServicio(idSeleccionado, Convert.ToInt64(cmbProveedor.SelectedValue), Convert.ToInt64(cmbServicio.SelectedValue), nudCostoBase.Value);
                 CargarTabla();
+                CargarComboBoxes();
                 LimpiarDatos();
             }
             catch (Exception ex) { MessageBox.Show("Error al modificar: " + ex.Message); }
@@ -92,6 +109,7 @@ namespace Constructora
             {
                 dao.EliminarProveedorServicio(idSeleccionado);
                 CargarTabla();
+                CargarComboBoxes();
                 LimpiarDatos();
             }
             catch (SqlException ex)

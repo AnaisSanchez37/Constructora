@@ -19,6 +19,36 @@ namespace Constructora
             return tabla;
         }
 
+        public DataTable ObtenerServicio()
+        {
+            string consulta = "SELECT IdServicio, CONCAT(IdServicio, '--->', NombreServicio) AS NombreServicio FROM InfoProyecto.Servicio";
+
+            using (SqlConnection con = new SqlConnection(cadenaConexion))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(consulta, con))
+                {
+                    DataTable tabla = new DataTable();
+                    da.Fill(tabla);
+                    return tabla;
+                }
+            }
+        }
+
+        public DataTable ObtenerProveedor()
+        {
+            string consulta = "SELECT IdProveedor, CONCAT(IdProveedor, ' -', NombreProveedor) AS NombreProveedor FROM InfoPersona.Proveedor";
+
+            using (SqlConnection con = new SqlConnection(cadenaConexion))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(consulta, con))
+                {
+                    DataTable tabla = new DataTable();
+                    da.Fill(tabla);
+                    return tabla;
+                }
+            }
+        }
+
         public void InsertarProveedorServicio(long idProveedor, long idServicio, decimal costoBase)
         {
             string consulta = "INSERT INTO InfoProyecto.ProveedorServicio (IdProveedor, IdServicio, CostoBase) VALUES (@idProveedor, @idServicio, @costoBase)";
