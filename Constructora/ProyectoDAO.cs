@@ -41,20 +41,6 @@ namespace Constructora
                 }
             }
         }
-        /*public DataTable ObtenerProyecto()
-        {
-            string consulta = "SELECT IdProyecto, IdCliente, IdArquitecto, NombreProyecto, FechaInicio, FechaFin, ClaveCatastral, Estado, Presupuesto, CostoTotalProyecto FROM InfoProyecto.Proyecto";
-
-            using (SqlConnection con = new SqlConnection(cadenaConexion))
-            {
-                using (SqlDataAdapter da = new SqlDataAdapter(consulta, con))
-                {
-                    DataTable tabla = new DataTable();
-                    da.Fill(tabla);
-                    return tabla;
-                }
-            }
-        }*/
 
         public DataTable ObtenerClientes()
         {

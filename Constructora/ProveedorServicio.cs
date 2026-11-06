@@ -50,13 +50,24 @@ namespace Constructora
         private void CargarTabla()
         {
             dgvProveedorServicio.DataSource = dao.consultarDatos();
-            dgvProveedorServicio.Columns["IdProveedorServicio"].HeaderText = "ID";
+            dgvProveedorServicio.Columns["IdProveedorServicio"].HeaderText = "ID Proveedor-Servicio";
             dgvProveedorServicio.Columns["IdProveedor"].Visible = false;
             dgvProveedorServicio.Columns["IdServicio"].Visible = false;
             dgvProveedorServicio.Columns["NombreProveedor"].HeaderText = "Proveedor";
             dgvProveedorServicio.Columns["NombreServicio"].HeaderText = "Servicio";
             dgvProveedorServicio.Columns["CostoBase"].HeaderText = "Costo base";
             dgvProveedorServicio.Columns["CostoBase"].DefaultCellStyle.Format = "N2";
+
+            // Ajustar el tamaño de las columnas.
+            dgvProveedorServicio.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvProveedorServicio.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProveedorServicio.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvProveedorServicio.Columns["IdProveedorServicio"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvProveedorServicio.Columns["IdProveedorServicio"].Width = 45;
+            dgvProveedorServicio.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProveedorServicio.MultiSelect = false;
+
+            dgvProveedorServicio.MultiSelect = false;
         }
 
         private bool ValidarDatos()
@@ -78,13 +89,14 @@ namespace Constructora
         {
             try
             {
+                idSeleccionado = -1;
                 if (!ValidarDatos()) return;
                 dao.InsertarProveedorServicio(Convert.ToInt64(cmbProveedor.SelectedValue), Convert.ToInt64(cmbServicio.SelectedValue), nudCostoBase.Value);
                 CargarTabla();
                 CargarComboBoxes();
                 LimpiarDatos();
             }
-            catch (Exception ex) { /*MessageBox.Show("Error al agregar: " + ex.Message);*/ }
+            catch (Exception ex) { MessageBox.Show("Error al agregar datos.El servicio ya está registrado para el proveedor.");}
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -98,7 +110,7 @@ namespace Constructora
                 CargarComboBoxes();
                 LimpiarDatos();
             }
-            catch (Exception ex) { MessageBox.Show("Error al modificar: " + ex.Message); }
+            catch (Exception ex) { MessageBox.Show("Error al modificar los datos.El servicio ya está registrado para el proveedor."); }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -115,9 +127,9 @@ namespace Constructora
             catch (SqlException ex)
             {
                 if (ex.Number == 547) MessageBox.Show("No se puede eliminar porque hay registros relacionados.");
-                else MessageBox.Show("Error al eliminar: " + ex.Message);
+                else MessageBox.Show("Error al eliminar. ");
             }
-            catch (Exception ex) { MessageBox.Show("Error al eliminar: " + ex.Message); }
+            catch (Exception ex) { MessageBox.Show("Error al eliminar."); }
         }
 
         private void dgvProveedorServicio_CellClick(object sender, DataGridViewCellEventArgs e)

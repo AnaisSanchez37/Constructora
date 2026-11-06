@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Constructora
 {
@@ -12,7 +13,7 @@ namespace Constructora
         {
             DataTable tabla = new DataTable();
             using (SqlConnection con = new SqlConnection(cadenaConexion))
-            using (SqlDataAdapter da = new SqlDataAdapter("SELECT PS.IdProveedorServicio, PS.IdProveedor, PS.IdServicio, P.NombreProveedor, S.NombreServicio, PS.CostoBase FROM InfoProyecto.ProveedorServicio PS INNER JOIN InfoPersona.Proveedor P ON P.IdProveedor = PS.IdProveedor INNER JOIN InfoProyecto.Servicio S ON S.IdServicio = PS.IdServicio ORDER BY PS.IdProveedorServicio", con))
+            using (SqlDataAdapter da = new SqlDataAdapter("SELECT PS.IdProveedorServicio, PS.IdProveedor, PS.IdServicio, CONCAT(P.IdProveedor, ' -', P.NombreProveedor) AS NombreProveedor,CONCAT(S.IdServicio, '--->', S.NombreServicio) AS NombreServicio, PS.CostoBase FROM InfoProyecto.ProveedorServicio PS INNER JOIN InfoPersona.Proveedor P ON P.IdProveedor = PS.IdProveedor INNER JOIN InfoProyecto.Servicio S ON S.IdServicio = PS.IdServicio ORDER BY PS.IdProveedorServicio", con))
             {
                 da.Fill(tabla);
             }
@@ -91,15 +92,30 @@ namespace Constructora
 
         public bool ExisteRelacion(long idProveedor, long idServicio, long id = -1)
         {
+            string consulta;
+          
             using (SqlConnection con = new SqlConnection(cadenaConexion))
-            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM InfoProyecto.ProveedorServicio WHERE IdProveedor = @proveedor AND IdServicio = @servicio AND IdProveedorServicio <> @id", con))
             {
-                cmd.Parameters.Add("@proveedor", SqlDbType.BigInt).Value = idProveedor;
-                cmd.Parameters.Add("@servicio", SqlDbType.BigInt).Value = idServicio;
-                cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = id;
+                SqlCommand cmd;
+                if (id == -1)
+                {
+                    consulta = "SELECT COUNT(*) FROM InfoProyecto.ProveedorServicio WHERE IdProveedor = @proveedor AND IdServicio = @servicio";
+                    cmd = new SqlCommand(consulta, con);
+                    cmd.Parameters.Add("@proveedor", SqlDbType.BigInt).Value = idProveedor;
+                    cmd.Parameters.Add("@servicio", SqlDbType.BigInt).Value = idServicio;
+                } else
+                {
+                    consulta = "SELECT COUNT(*) FROM InfoProyecto.ProveedorServicio WHERE IdProveedor = @proveedor AND IdServicio = @servicio AND IdProveedorServicio <> @id";
+                    cmd = new SqlCommand(consulta, con);
+                    cmd.Parameters.Add("@proveedor", SqlDbType.BigInt).Value = idProveedor;
+                    cmd.Parameters.Add("@servicio", SqlDbType.BigInt).Value = idServicio;
+                    cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = id;
+                }
+
                 con.Open();
                 return (int)cmd.ExecuteScalar() > 0;
             }
+            
         }
 
     }
