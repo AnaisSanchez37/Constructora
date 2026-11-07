@@ -31,11 +31,14 @@
             this.lbDisenio = new System.Windows.Forms.Label();
             this.cmbDisenio = new System.Windows.Forms.ComboBox();
             this.lbProveedorServicio = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbProveedorServicio = new System.Windows.Forms.ComboBox();
             this.lbDuracion = new System.Windows.Forms.Label();
             this.txtDuracion = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.dgvServicioPorDisenio = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvServicioPorDisenio)).BeginInit();
             this.SuspendLayout();
             // 
             // lbDisenio
@@ -64,13 +67,13 @@
             this.lbProveedorServicio.TabIndex = 2;
             this.lbProveedorServicio.Text = "Seleccione el proveedor/servicio.";
             // 
-            // comboBox1
+            // cmbProveedorServicio
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(16, 95);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(221, 28);
-            this.comboBox1.TabIndex = 3;
+            this.cmbProveedorServicio.FormattingEnabled = true;
+            this.cmbProveedorServicio.Location = new System.Drawing.Point(16, 95);
+            this.cmbProveedorServicio.Name = "cmbProveedorServicio";
+            this.cmbProveedorServicio.Size = new System.Drawing.Size(221, 28);
+            this.cmbProveedorServicio.TabIndex = 3;
             // 
             // lbDuracion
             // 
@@ -96,26 +99,50 @@
             this.btnAgregar.TabIndex = 6;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // button1
+            // btnModificar
             // 
-            this.button1.Location = new System.Drawing.Point(16, 256);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 34);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnModificar.Location = new System.Drawing.Point(16, 256);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(131, 34);
+            this.btnModificar.TabIndex = 7;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(16, 296);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(131, 34);
+            this.btnEliminar.TabIndex = 8;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // dgvServicioPorDisenio
+            // 
+            this.dgvServicioPorDisenio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvServicioPorDisenio.Location = new System.Drawing.Point(264, 32);
+            this.dgvServicioPorDisenio.Name = "dgvServicioPorDisenio";
+            this.dgvServicioPorDisenio.RowHeadersWidth = 51;
+            this.dgvServicioPorDisenio.RowTemplate.Height = 24;
+            this.dgvServicioPorDisenio.Size = new System.Drawing.Size(818, 518);
+            this.dgvServicioPorDisenio.TabIndex = 9;
             // 
             // ServicioPorDisenio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 562);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1104, 562);
+            this.Controls.Add(this.dgvServicioPorDisenio);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtDuracion);
             this.Controls.Add(this.lbDuracion);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbProveedorServicio);
             this.Controls.Add(this.lbProveedorServicio);
             this.Controls.Add(this.cmbDisenio);
             this.Controls.Add(this.lbDisenio);
@@ -123,6 +150,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ServicioPorDisenio";
             this.Text = "Servicio por diseño";
+            this.Load += new System.EventHandler(this.ServicioPorDisenio_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvServicioPorDisenio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,10 +162,12 @@
         private System.Windows.Forms.Label lbDisenio;
         private System.Windows.Forms.ComboBox cmbDisenio;
         private System.Windows.Forms.Label lbProveedorServicio;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbProveedorServicio;
         private System.Windows.Forms.Label lbDuracion;
         private System.Windows.Forms.TextBox txtDuracion;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.DataGridView dgvServicioPorDisenio;
     }
 }

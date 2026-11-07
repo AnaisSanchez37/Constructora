@@ -20,59 +20,60 @@ namespace Constructora
         private void btnArquitecto_Click(object sender, EventArgs e)
         {
             Arquitecto formArqui = new Arquitecto();
-            formArqui.ShowDialog();
+            formArqui.Show();
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
             Cliente formCliente = new Cliente();
-            formCliente.ShowDialog();
+            formCliente.Show();
         }
 
         private void btnProveedor_Click(object sender, EventArgs e)
         {
             Proveedor formProveedor = new Proveedor();
-            formProveedor.ShowDialog();
+            formProveedor.Show();
         }
 
         private void btnProyecto_Click(object sender, EventArgs e)
         {
             Proyecto formProyecto = new Proyecto();
-            formProyecto.ShowDialog();
+            formProyecto.Show();
         }
         private void btnServicio_Click(object sender, EventArgs e)
         {
-            using (Servicio formServicio = new Servicio())
-            {
-                formServicio.ShowDialog();
-            }
+            Servicio formServicio = new Servicio();
+            formServicio.Show();
         }
 
         private void btnProveedorServicio_Click(object sender, EventArgs e)
         {
-            using (ProveedorServicio formProveedorServicio = new ProveedorServicio())
-            {
-                formProveedorServicio.ShowDialog();
-            }
-        }        private void btnDisenio_Click(object sender, EventArgs e)
+            ProveedorServicio formProveedorServicio = new ProveedorServicio();
+            formProveedorServicio.Show();
+        }
+        private void btnDisenio_Click(object sender, EventArgs e)
         {
-            using (Disenio formDisenio = new Disenio())
-            {
-                formDisenio.ShowDialog();
-            }
+            Disenio formDisenio = new Disenio();
+            formDisenio.Show();
         }
 
         private void btnGasto_Click(object sender, EventArgs e)
         {
             Gasto formGasto = new Gasto();
-            formGasto.ShowDialog();
+            formGasto.Show();
         }
 
         private void btnPago_Click(object sender, EventArgs e)
         {
             Pago formPago= new Pago();
-            formPago.ShowDialog();
+            formPago.Show();
 
+        }
+
+        private void btnServicio_Disenio_Click(object sender, EventArgs e)
+        {
+            ServicioPorDisenio formSPD = new ServicioPorDisenio();
+            formSPD.Show();
         }
     }
 }

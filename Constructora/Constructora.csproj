@@ -102,6 +102,7 @@
     <Compile Include="ServicioPorDisenio.Designer.cs">
       <DependentUpon>ServicioPorDisenio.cs</DependentUpon>
     </Compile>
+    <Compile Include="ServicioPorDisenioDAO.cs" />
     <EmbeddedResource Include="Arquitecto.resx">
       <DependentUpon>Arquitecto.cs</DependentUpon>
     </EmbeddedResource>

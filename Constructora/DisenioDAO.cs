@@ -11,12 +11,14 @@ namespace Constructora
         public DataTable consultarDatos()
         {
             string consulta = @"SELECT D.IdDisenio, D.IdArquitecto, D.IdProyecto,
-                A.NombreArquitecto, P.NombreProyecto, D.NombreDisenio,
-                D.FechaCreacion, D.Descripcion, D.CostoDisenio
+                CONCAT(A.NombreArquitecto, ' - ', YEAR(A.FechaNacimientoA)) AS NombreArquitecto,
+                CONCAT(P.NombreProyecto, ' [', A.NombreArquitecto, ']') AS NombreProyecto,
+                D.NombreDisenio, D.FechaCreacion, D.Descripcion, D.CostoDisenio
                 FROM InfoProyecto.Disenio D
                 INNER JOIN InfoPersona.Arquitecto A ON D.IdArquitecto = A.IdArquitecto
                 INNER JOIN InfoProyecto.Proyecto P ON D.IdProyecto = P.IdProyecto
                 ORDER BY D.IdDisenio";
+
             DataTable tabla = new DataTable();
             using (SqlConnection con = new SqlConnection(cadenaConexion))
             using (SqlDataAdapter da = new SqlDataAdapter(consulta, con))
@@ -30,7 +32,7 @@ namespace Constructora
         {
             DataTable tabla = new DataTable();
             using (SqlConnection con = new SqlConnection(cadenaConexion))
-            using (SqlDataAdapter da = new SqlDataAdapter("SELECT IdArquitecto, NombreArquitecto FROM InfoPersona.Arquitecto ORDER BY NombreArquitecto", con))
+            using (SqlDataAdapter da = new SqlDataAdapter("SELECT IdArquitecto, CONCAT(NombreArquitecto, ' - ', YEAR(FechaNacimientoA)) AS NombreArquitecto FROM InfoPersona.Arquitecto ORDER BY NombreArquitecto", con))
             {
                 da.Fill(tabla);
             }
@@ -41,7 +43,7 @@ namespace Constructora
         {
             DataTable tabla = new DataTable();
             using (SqlConnection con = new SqlConnection(cadenaConexion))
-            using (SqlDataAdapter da = new SqlDataAdapter("SELECT IdProyecto, NombreProyecto FROM InfoProyecto.Proyecto ORDER BY NombreProyecto", con))
+            using (SqlDataAdapter da = new SqlDataAdapter("SELECT P.IdProyecto, CONCAT(P.NombreProyecto, ' [', A.NombreArquitecto, ']') AS NombreProyecto FROM InfoProyecto.Proyecto P INNER JOIN InfoPersona.Arquitecto A ON P.IdArquitecto = A.IdArquitecto ORDER BY P.NombreProyecto", con))
             {
                 da.Fill(tabla);
             }

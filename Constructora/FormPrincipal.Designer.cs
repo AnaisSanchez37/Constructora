@@ -149,6 +149,7 @@ namespace Constructora
             this.btnServicio_Disenio.TabIndex = 11;
             this.btnServicio_Disenio.Text = "Servicio por Diseño";
             this.btnServicio_Disenio.UseVisualStyleBackColor = true;
+            this.btnServicio_Disenio.Click += new System.EventHandler(this.btnServicio_Disenio_Click);
             // 
             // btnProveedor_Servicio
             // 

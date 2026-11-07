@@ -45,6 +45,12 @@ namespace Constructora
             dgvDisenio.Columns["Descripcion"].HeaderText = "Descripción";
             dgvDisenio.Columns["CostoDisenio"].HeaderText = "Costo del diseño";
             dgvDisenio.Columns["CostoDisenio"].DefaultCellStyle.Format = "N2";
+
+            dgvDisenio.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvDisenio.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDisenio.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvDisenio.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDisenio.MultiSelect = false;
         }
 
         private bool ValidarDatos()
@@ -52,7 +58,7 @@ namespace Constructora
             if (cmbArquitecto.SelectedValue == null || cmbProyecto.SelectedValue == null ||
                 string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtDescripcion.Text))
             {
-                //MessageBox.Show("Seleccione arquitecto y proyecto y complete el nombre y la descripción.");
+                MessageBox.Show("Seleccione arquitecto y proyecto, y complete el nombre y la descripción.");
                 return false;
             }
             return true;
@@ -69,7 +75,7 @@ namespace Constructora
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { /* MessageBox.Show("Error al agregar el diseño: " + ex.Message); */ }
+            catch (Exception ex) { MessageBox.Show("Error al agregar el diseño.");}
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
