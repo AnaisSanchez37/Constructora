@@ -104,7 +104,7 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar: " + ex.Message);
+                MessageBox.Show("Error al insertar.Datos duplicados.");
             }
         }
 

@@ -19,12 +19,16 @@ namespace Constructora
         {
             try
             {
+                cmbArquitecto.DataSource = null;
                 cmbArquitecto.DisplayMember = "NombreArquitecto";
                 cmbArquitecto.ValueMember = "IdArquitecto";
                 cmbArquitecto.DataSource = dao.ObtenerArquitectos();
+                cmbArquitecto.SelectedIndex = -1;
+                cmbProyecto.DataSource = null;
                 cmbProyecto.DisplayMember = "NombreProyecto";
                 cmbProyecto.ValueMember = "IdProyecto";
                 cmbProyecto.DataSource = dao.ObtenerProyectos();
+                cmbProyecto.SelectedIndex = -1;
                 CargarTabla();
                 LimpiarDatos();
             }
@@ -34,7 +38,7 @@ namespace Constructora
         private void CargarTabla()
         {
             dgvDisenio.DataSource = dao.consultarDatos();
-            dgvDisenio.Columns["IdDisenio"].HeaderText = "ID";
+            dgvDisenio.Columns["IdDisenio"].HeaderText = "ID Diseño";
             dgvDisenio.Columns["IdArquitecto"].Visible = false;
             dgvDisenio.Columns["IdProyecto"].Visible = false;
             dgvDisenio.Columns["NombreArquitecto"].HeaderText = "Arquitecto";
@@ -80,7 +84,7 @@ namespace Constructora
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para modificar."); return; }
+            if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para modificar."); return; }
             try
             {
                 if (!ValidarDatos()) return;
@@ -95,7 +99,7 @@ namespace Constructora
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            //if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para eliminar."); return; }
+            if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para eliminar."); return; }
             /* if (MessageBox.Show("¿Desea eliminar el diseño seleccionado?", "Confirmar",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return; */
             try
@@ -107,9 +111,8 @@ namespace Constructora
             catch (SqlException ex)
             {
                 if (ex.Number == 547) MessageBox.Show("No se puede eliminar el diseño porque tiene registros relacionados.");
-                else MessageBox.Show("Error al eliminar el diseño: " + ex.Message);
+                else MessageBox.Show("Error al eliminar el diseño.");
             }
-            catch (Exception ex) { MessageBox.Show("Error al eliminar el diseño: " + ex.Message); }
         }
 
         private void dgvDisenio_CellClick(object sender, DataGridViewCellEventArgs e)
