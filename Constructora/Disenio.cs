@@ -75,7 +75,7 @@ namespace Constructora
                 if (!ValidarDatos()) return;
                 dao.InsertarDisenio(Convert.ToInt64(cmbArquitecto.SelectedValue),
                     Convert.ToInt64(cmbProyecto.SelectedValue), txtNombre.Text.Trim(),
-                    dtpFechaCreacion.Value, txtDescripcion.Text.Trim(), nudCostoDisenio.Value);
+                    DateTime.Today, txtDescripcion.Text.Trim(), nudCostoDisenio.Value);
                 CargarTabla();
                 LimpiarDatos();
             }
@@ -90,7 +90,7 @@ namespace Constructora
                 if (!ValidarDatos()) return;
                 dao.ModificarDisenio(idSeleccionado, Convert.ToInt64(cmbArquitecto.SelectedValue),
                     Convert.ToInt64(cmbProyecto.SelectedValue), txtNombre.Text.Trim(),
-                    dtpFechaCreacion.Value, txtDescripcion.Text.Trim(), nudCostoDisenio.Value);
+                    DateTime.Today, txtDescripcion.Text.Trim(), nudCostoDisenio.Value);
                 CargarTabla();
                 LimpiarDatos();
             }
@@ -123,7 +123,6 @@ namespace Constructora
             cmbArquitecto.SelectedValue = Convert.ToInt64(fila.Cells["IdArquitecto"].Value);
             cmbProyecto.SelectedValue = Convert.ToInt64(fila.Cells["IdProyecto"].Value);
             txtNombre.Text = fila.Cells["NombreDisenio"].Value.ToString();
-            dtpFechaCreacion.Value = Convert.ToDateTime(fila.Cells["FechaCreacion"].Value);
             txtDescripcion.Text = fila.Cells["Descripcion"].Value.ToString();
             nudCostoDisenio.Value = Convert.ToDecimal(fila.Cells["CostoDisenio"].Value);
         }
@@ -134,7 +133,6 @@ namespace Constructora
             cmbArquitecto.SelectedIndex = -1;
             cmbProyecto.SelectedIndex = -1;
             txtNombre.Clear();
-            dtpFechaCreacion.Value = DateTime.Today;
             txtDescripcion.Clear();
             nudCostoDisenio.Value = 0;
             dgvDisenio.ClearSelection();
