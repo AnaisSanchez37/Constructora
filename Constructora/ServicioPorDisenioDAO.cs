@@ -15,8 +15,8 @@ namespace Constructora
         {
             DataTable tabla = new DataTable();
             string query = @"SELECT SPD.IdDisenio, SPD.IdProveedorServicio,
-                            CONCAT(D.IdDisenio, ' - ', D.NombreDisenio) AS NombreDisenio, 
-                            CONCAT(PS.IdProveedorServicio, 'P: ', P.NombreProveedor, 'S: ', S.NombreServicio) AS NombreProveedorServicio, 
+                            CONCAT(D.IdDisenio, ' - ', D.NombreDisenio) AS NombreDisenio,
+                            CONCAT(PS.IdProveedorServicio, S.IdServicio, '--->', S.NombreServicio, '[', P.NombreProveedor ,']') AS NombreProveedorServicio, 
                             SPD.Fecha, SPD.Duracion, SPD.CostoServicioDisenio 
                             FROM InfoProyecto.ServicioPorDisenio SPD
                             INNER JOIN InfoProyecto.Disenio D ON D.IdDisenio = SPD.IdDisenio
@@ -47,7 +47,7 @@ namespace Constructora
         {
             // Concactenacion por modificar
             string consulta = @"SELECT PS.IdProveedorServicio, 
-                                CONCAT(PS.IdProveedorServicio, 'P: ', P.NombreProveedor, 'S: ', S.NombreServicio) AS DescripcionPS 
+                                CONCAT(PS.IdProveedorServicio, S.IdServicio, '--->', S.NombreServicio, '[', P.NombreProveedor ,']') AS DescripcionPS
                                 FROM InfoProyecto.ProveedorServicio PS
                                 INNER JOIN InfoPersona.Proveedor P ON P.IdProveedor = PS.IdProveedor
                                 INNER JOIN InfoProyecto.Servicio S ON S.IdServicio = PS.IdServicio";

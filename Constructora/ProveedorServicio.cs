@@ -50,7 +50,7 @@ namespace Constructora
         private void CargarTabla()
         {
             dgvProveedorServicio.DataSource = dao.consultarDatos();
-            dgvProveedorServicio.Columns["IdProveedorServicio"].HeaderText = "ID Proveedor-Servicio";
+            dgvProveedorServicio.Columns["IdProveedorServicio"].HeaderText = "ID Proveedor - Servicio";
             dgvProveedorServicio.Columns["IdProveedor"].Visible = false;
             dgvProveedorServicio.Columns["IdServicio"].Visible = false;
             dgvProveedorServicio.Columns["NombreProveedor"].HeaderText = "Proveedor";
@@ -63,7 +63,7 @@ namespace Constructora
             dgvProveedorServicio.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProveedorServicio.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvProveedorServicio.Columns["IdProveedorServicio"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dgvProveedorServicio.Columns["IdProveedorServicio"].Width = 45;
+            dgvProveedorServicio.Columns["IdProveedorServicio"].Width = 140;
             dgvProveedorServicio.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProveedorServicio.MultiSelect = false;
 
@@ -75,11 +75,19 @@ namespace Constructora
             if (cmbProveedor.SelectedValue == null || cmbServicio.SelectedValue == null)
             {
                 MessageBox.Show("Seleccione un proveedor y un servicio. Regístrelos primero si las listas están vacías.");
+                LimpiarDatos();
+                return false;
+            }
+            if (nudCostoBase.Value <= 0)
+            {
+                MessageBox.Show("Error al agregar dato: El costo base no puede ser menor que cero.", "Valor no válido.");
+                LimpiarDatos();
                 return false;
             }
             if (dao.ExisteRelacion(Convert.ToInt64(cmbProveedor.SelectedValue), Convert.ToInt64(cmbServicio.SelectedValue), idSeleccionado))
             {
                 MessageBox.Show("Este servicio ya está registrado para el proveedor.");
+                LimpiarDatos();
                 return false;
             }
             return true;
@@ -90,7 +98,11 @@ namespace Constructora
             try
             {
                 idSeleccionado = -1;
-                if (!ValidarDatos()) return;
+                if (!ValidarDatos())
+                {
+                    LimpiarDatos();
+                    return;
+                }
                 dao.InsertarProveedorServicio(Convert.ToInt64(cmbProveedor.SelectedValue), Convert.ToInt64(cmbServicio.SelectedValue), nudCostoBase.Value);
                 CargarTabla();
                 CargarComboBoxes();
@@ -101,10 +113,14 @@ namespace Constructora
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para modificar."); return; }
+            if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para modificar."); return; }
             try
             {
-                if (!ValidarDatos()) return;
+                if (!ValidarDatos())
+                {
+                    LimpiarDatos();
+                    return;
+                }
                 dao.ModificarProveedorServicio(idSeleccionado, Convert.ToInt64(cmbProveedor.SelectedValue), Convert.ToInt64(cmbServicio.SelectedValue), nudCostoBase.Value);
                 CargarTabla();
                 CargarComboBoxes();
@@ -115,7 +131,7 @@ namespace Constructora
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            //if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para eliminar."); return; }
+            if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para eliminar."); return; }
             //if (MessageBox.Show("¿Desea eliminar el registro seleccionado?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             try
             {
