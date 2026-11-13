@@ -20,6 +20,8 @@ namespace Constructora
         {
             InitializeComponent();
             dgvPago.CellClick += dgvPago_CellClick;
+            cbCliente.SelectedIndexChanged += cbCliente_SelectedIndexChanged_1;
+            cbProyecto.SelectedIndexChanged += cbProyecto_SelectedIndexChanged_1;
         }
 
         private void Pago_Load(object sender, EventArgs e)

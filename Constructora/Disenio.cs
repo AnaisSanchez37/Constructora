@@ -10,9 +10,13 @@ namespace Constructora
         private DisenioDAO dao = new DisenioDAO();
         private long idSeleccionado = -1;
 
+        private bool actualizandoCombos = false;
+
         public Disenio()
         {
             InitializeComponent();
+            cmbArquitecto.SelectedIndexChanged += cmbArquitecto_SelectedIndexChanged_1;
+            cmbProyecto.SelectedIndexChanged += cmbProyecto_SelectedIndexChanged_1;
         }
 
         private void Disenio_Load(object sender, EventArgs e)
@@ -136,6 +140,59 @@ namespace Constructora
             txtDescripcion.Clear();
             nudCostoDisenio.Value = 0;
             dgvDisenio.ClearSelection();
+        }
+
+        private void cmbProyecto_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (actualizandoCombos || cmbProyecto.SelectedValue == null)
+                return;
+
+            if (cmbProyecto.SelectedValue is DataRowView)
+                return;
+
+            try
+            {
+                actualizandoCombos = true;
+
+                int idProyecto = Convert.ToInt32(cmbProyecto.SelectedValue);
+
+                int idCliente = dao.ConsultarArquitectoPorProyecto(idProyecto);
+
+                if (idCliente != -1)
+                {
+                    cmbArquitecto.SelectedValue = idCliente;
+                }
+            }
+            finally
+            {
+                actualizandoCombos = false;
+            }
+        }
+
+        private void cmbArquitecto_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (actualizandoCombos || cmbArquitecto.SelectedValue == null)
+                return;
+
+            if (cmbArquitecto.SelectedValue is DataRowView)
+                return;
+
+            try
+            {
+                actualizandoCombos = true;
+
+                int idArquitecto = Convert.ToInt32(cmbArquitecto.SelectedValue);
+
+                cmbProyecto.DataSource = dao.ConsultarProyectosPorArquitecto(idArquitecto);
+
+                cmbProyecto.DisplayMember = "NombreProyecto";
+                cmbProyecto.ValueMember = "IdProyecto";
+                cmbProyecto.SelectedIndex = -1;
+            }
+            finally
+            {
+                actualizandoCombos = false;
+            }
         }
     }
 }

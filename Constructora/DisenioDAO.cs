@@ -99,6 +99,58 @@ namespace Constructora
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public DataTable ConsultarProyectosPorArquitecto(int idArquitecto)
+        {
+            DataTable tabla = new DataTable();
+
+            string consulta =
+            "SELECT PR.IdProyecto, " +
+            "CONCAT(PR.NombreProyecto, ' [', A.NombreArquitecto, ']') AS NombreProyecto " +
+            "FROM InfoProyecto.Proyecto PR " +
+            "INNER JOIN InfoPersona.Arquitecto A ON PR.IdArquitecto = A.IdArquitecto " +
+            "WHERE PR.IdArquitecto = @IdArquitecto";
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            using (SqlCommand comando = new SqlCommand(consulta, conexion))
+            {
+                comando.Parameters.AddWithValue("@IdArquitecto", idArquitecto);
+
+                using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                {
+                    adaptador.Fill(tabla);
+                }
+            }
+
+            return tabla;
+        }
+
+        public int ConsultarArquitectoPorProyecto(int idProyecto)
+        {
+            int idArquitecto = -1;
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                string consulta = @"
+            SELECT IdArquitecto
+            FROM InfoProyecto.Proyecto
+            WHERE IdProyecto = @IdProyecto";
+
+                SqlCommand comando = new SqlCommand(consulta, conexion);
+                comando.Parameters.AddWithValue("@IdProyecto", idProyecto);
+
+                conexion.Open();
+
+                object resultado = comando.ExecuteScalar();
+
+                if (resultado != null && resultado != DBNull.Value)
+                {
+                    idArquitecto = Convert.ToInt32(resultado);
+                }
+            }
+
+            return idArquitecto;
+        }
     }
 }
 
