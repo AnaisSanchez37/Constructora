@@ -38,7 +38,7 @@ namespace Constructora
         {
             dgvGasto.DataSource = gDAO.ConsultarGastos();
 
-            dgvGasto.Columns["IdGasto"].HeaderText = "ID";
+            dgvGasto.Columns["IdGasto"].HeaderText = "ID Gasto";
             dgvGasto.Columns["NombreDisenio"].HeaderText = "Diseño";
             dgvGasto.Columns["Concepto"].HeaderText = "Concepto";
             dgvGasto.Columns["Monto"].HeaderText = "Monto";
@@ -72,43 +72,49 @@ namespace Constructora
                 cbDisenio.SelectedValue is DataRowView)
             {
                 MessageBox.Show("Selecciona un diseño.");
+                LimpiarDatos();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtConcepto.Text))
             {
                 MessageBox.Show("Ingresa el concepto del gasto.");
+                LimpiarDatos();
                 return false;
             }
 
             if (txtConcepto.Text.Trim().Length > 200)
             {
-                MessageBox.Show(
-                    "El concepto no puede tener más de 200 caracteres.");
+                MessageBox.Show("El concepto no puede tener más de 200 caracteres.");
+                LimpiarDatos();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtMonto.Text))
             {
                 MessageBox.Show("Ingresa el monto del gasto.");
+                LimpiarDatos();
                 return false;
             }
 
             if (!decimal.TryParse(txtMonto.Text, out monto))
             {
                 MessageBox.Show("Ingresa un monto válido.");
+                LimpiarDatos();
                 return false;
             }
 
             if (monto <= 0)
             {
                 MessageBox.Show("El monto debe ser mayor a cero.");
+                LimpiarDatos();
                 return false;
             }
 
             if (decimal.Round(monto, 2) != monto)
             {
                 MessageBox.Show("El monto no puede tener más de dos decimales.");
+                LimpiarDatos();
                 return false;
             }
 
@@ -140,8 +146,7 @@ namespace Constructora
         {
             if (IdGastoSeleccionado == -1)
             {
-                MessageBox.Show(
-                    "Selecciona un gasto de la tabla para modificarlo.");
+                MessageBox.Show("Selecciona un gasto de la tabla para modificarlo.");
 
                 return;
             }

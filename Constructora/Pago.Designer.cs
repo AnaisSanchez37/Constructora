@@ -38,6 +38,7 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvPago = new System.Windows.Forms.DataGridView();
+            this.btnVerProyectos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPago)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,11 +138,22 @@
             this.dgvPago.Size = new System.Drawing.Size(853, 469);
             this.dgvPago.TabIndex = 9;
             // 
+            // btnVerProyectos
+            // 
+            this.btnVerProyectos.Location = new System.Drawing.Point(752, 215);
+            this.btnVerProyectos.Name = "btnVerProyectos";
+            this.btnVerProyectos.Size = new System.Drawing.Size(115, 27);
+            this.btnVerProyectos.TabIndex = 10;
+            this.btnVerProyectos.Text = "Ver proyectos";
+            this.btnVerProyectos.UseVisualStyleBackColor = true;
+            this.btnVerProyectos.Click += new System.EventHandler(this.btnVerProyectos_Click);
+            // 
             // Pago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 735);
+            this.Controls.Add(this.btnVerProyectos);
             this.Controls.Add(this.dgvPago);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
@@ -156,7 +168,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Pago";
             this.Text = "Pago";
-            Load += Pago_Load;
+            this.Load += new System.EventHandler(this.Pago_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPago)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -175,5 +187,6 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvPago;
+        private System.Windows.Forms.Button btnVerProyectos;
     }
 }

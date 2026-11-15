@@ -25,6 +25,8 @@ namespace Constructora
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvDisenio = new System.Windows.Forms.DataGridView();
+            this.btnVerProyectos = new System.Windows.Forms.Button();
+            this.btnVerArquitectos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudCostoDisenio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDisenio)).BeginInit();
             this.SuspendLayout();
@@ -33,7 +35,7 @@ namespace Constructora
             // 
             this.cmbArquitecto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbArquitecto.Location = new System.Drawing.Point(27, 55);
-            this.cmbArquitecto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbArquitecto.Margin = new System.Windows.Forms.Padding(4);
             this.cmbArquitecto.Name = "cmbArquitecto";
             this.cmbArquitecto.Size = new System.Drawing.Size(345, 24);
             this.cmbArquitecto.TabIndex = 0;
@@ -52,7 +54,7 @@ namespace Constructora
             // 
             this.cmbProyecto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProyecto.Location = new System.Drawing.Point(27, 135);
-            this.cmbProyecto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProyecto.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProyecto.Name = "cmbProyecto";
             this.cmbProyecto.Size = new System.Drawing.Size(345, 24);
             this.cmbProyecto.TabIndex = 1;
@@ -70,7 +72,7 @@ namespace Constructora
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(27, 215);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.MaxLength = 200;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(345, 22);
@@ -89,7 +91,7 @@ namespace Constructora
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(27, 289);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.MaxLength = 0;
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
@@ -111,7 +113,7 @@ namespace Constructora
             // 
             this.nudCostoDisenio.DecimalPlaces = 2;
             this.nudCostoDisenio.Location = new System.Drawing.Point(27, 443);
-            this.nudCostoDisenio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudCostoDisenio.Margin = new System.Windows.Forms.Padding(4);
             this.nudCostoDisenio.Maximum = new decimal(new int[] {
             2061584302,
             21474836,
@@ -135,7 +137,7 @@ namespace Constructora
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(27, 511);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(107, 39);
             this.btnAgregar.TabIndex = 6;
@@ -145,7 +147,7 @@ namespace Constructora
             // btnModificar
             // 
             this.btnModificar.Location = new System.Drawing.Point(147, 511);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(4);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(107, 39);
             this.btnModificar.TabIndex = 7;
@@ -155,7 +157,7 @@ namespace Constructora
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(267, 511);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(107, 39);
             this.btnEliminar.TabIndex = 8;
@@ -172,7 +174,7 @@ namespace Constructora
             this.dgvDisenio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDisenio.ColumnHeadersHeight = 29;
             this.dgvDisenio.Location = new System.Drawing.Point(407, 25);
-            this.dgvDisenio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvDisenio.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDisenio.MultiSelect = false;
             this.dgvDisenio.Name = "dgvDisenio";
             this.dgvDisenio.ReadOnly = true;
@@ -182,11 +184,33 @@ namespace Constructora
             this.dgvDisenio.TabIndex = 9;
             this.dgvDisenio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisenio_CellClick);
             // 
+            // btnVerProyectos
+            // 
+            this.btnVerProyectos.Location = new System.Drawing.Point(27, 607);
+            this.btnVerProyectos.Name = "btnVerProyectos";
+            this.btnVerProyectos.Size = new System.Drawing.Size(108, 30);
+            this.btnVerProyectos.TabIndex = 10;
+            this.btnVerProyectos.Text = "Ver proyectos";
+            this.btnVerProyectos.UseVisualStyleBackColor = true;
+            this.btnVerProyectos.Click += new System.EventHandler(this.btnVerProyectos_Click);
+            // 
+            // btnVerArquitectos
+            // 
+            this.btnVerArquitectos.Location = new System.Drawing.Point(147, 607);
+            this.btnVerArquitectos.Name = "btnVerArquitectos";
+            this.btnVerArquitectos.Size = new System.Drawing.Size(115, 30);
+            this.btnVerArquitectos.TabIndex = 11;
+            this.btnVerArquitectos.Text = "Ver arquitectos";
+            this.btnVerArquitectos.UseVisualStyleBackColor = true;
+            this.btnVerArquitectos.Click += new System.EventHandler(this.btnArquitectos_Click);
+            // 
             // Disenio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1467, 665);
+            this.Controls.Add(this.btnVerArquitectos);
+            this.Controls.Add(this.btnVerProyectos);
             this.Controls.Add(this.lbl0);
             this.Controls.Add(this.cmbArquitecto);
             this.Controls.Add(this.lbl1);
@@ -201,7 +225,7 @@ namespace Constructora
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.dgvDisenio);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1327, 703);
             this.Name = "Disenio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -227,6 +251,8 @@ namespace Constructora
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvDisenio;
+        private System.Windows.Forms.Button btnVerProyectos;
+        private System.Windows.Forms.Button btnVerArquitectos;
     }
 }
 

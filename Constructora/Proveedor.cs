@@ -66,7 +66,8 @@ namespace Constructora
                 string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                 string.IsNullOrWhiteSpace(txtContacto.Text))
             {
-                //MessageBox.Show("Por favor rellene todos los campos.");
+                MessageBox.Show("Por favor rellene todos los campos.");
+                LimpiarDatos();
                 return;
             }
 
@@ -76,12 +77,14 @@ namespace Constructora
                 if (pDAO.TelefonoExiste(txtTelefono.Text))
                 {
                     MessageBox.Show("El teléfono ya está registrado.");
+                    LimpiarDatos();
                     return;
                 }
 
                 if (txtTelefono.Text.Length != 10 || !txtTelefono.Text.All(char.IsDigit))
                 {
                     MessageBox.Show("El campo debe de tener 10 dígitos");
+                    LimpiarDatos();
                     return;
                 }
 
@@ -99,7 +102,7 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Error al agregar el proveedor: " + ex.Message);
+                MessageBox.Show("Error al agregar el proveedor.");
             }
         }
 
@@ -107,7 +110,7 @@ namespace Constructora
         {
             if (IdProveedorSeleccionado == -1)
             {
-                //MessageBox.Show("Seleccione una fila de la tabla para modificar.");
+                MessageBox.Show("Seleccione una fila de la tabla para modificar.");
                 return;
             }
 
@@ -116,7 +119,8 @@ namespace Constructora
                 string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                 string.IsNullOrWhiteSpace(txtContacto.Text))
             {
-                //MessageBox.Show("Por favor complete todos los campos.");
+                MessageBox.Show("Por favor complete todos los campos.");
+                LimpiarDatos();
                 return;
             }
 
@@ -126,12 +130,14 @@ namespace Constructora
                 if (pDAO.TelefonoExiste(txtTelefono.Text, IdProveedorSeleccionado))
                 {
                     MessageBox.Show("El teléfono ya está registrado para otro proveedor.");
+                    LimpiarDatos();
                     return;
                 }
 
                 if (txtTelefono.Text.Length != 10 || !txtTelefono.Text.All(char.IsDigit))
                 {
                     MessageBox.Show("El campo debe de tener 10 dígitos");
+                    LimpiarDatos();
                     return;
                 }
 
@@ -152,7 +158,8 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar el proveedor: " + ex.Message);
+                MessageBox.Show("Error al modificar el proveedor.");
+                LimpiarDatos();
             }
         }
 
@@ -160,7 +167,7 @@ namespace Constructora
         {
             if (IdProveedorSeleccionado == -1)
             {
-                //MessageBox.Show("Seleccione primero una fila de la tabla para eliminar.");
+                MessageBox.Show("Seleccione primero una fila de la tabla para eliminar.");
                 return;
             }
 
@@ -178,7 +185,8 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el proveedor: " + ex.Message);
+                MessageBox.Show("Error al eliminar el proveedor.");
+                LimpiarDatos();
             }
 
         }

@@ -109,31 +109,36 @@ namespace Constructora
             if (cmbCliente.SelectedIndex == -1 || cmbArquitecto.SelectedIndex == -1 || cmbEstado.SelectedIndex == -1 ||
                 string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                MessageBox.Show("Por favor rellene todos los campos obligatorios...");
+                MessageBox.Show("Por favor rellene todos los campos.");
+                LimpiarCampos();
                 return;
             }
 
             if (logica.ExisteNombreProyecto(txtNombre.Text))
             {
                 MessageBox.Show("Ya existe un proyecto registrado con ese nombre.");
+                LimpiarCampos();
                 return;
             }
 
             if (logica.ExisteClaveCatastral(txtClave.Text))
             {
                 MessageBox.Show("Esta clave catastral ya está registrada en otro proyecto.");
+                LimpiarCampos();
                 return;
             }
 
             if (dtFecha_inicio.Value > dtFecha_fin.Value)
             {
                 MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha de fin.");
+                LimpiarCampos();
                 return;
             }
 
             if (txtClave.Text.Length < 18 || txtClave.Text.Length > 24)
             {
                 MessageBox.Show("La clave catastral debe tener una longitud de entre 18 y 24 caracteres.");
+                LimpiarCampos();
                 return;
             }
 
@@ -142,11 +147,13 @@ namespace Constructora
             if (dtFecha_inicio.Value > hoy && (estadoSeleccionado == "En Proceso" || estadoSeleccionado == "Finalizado"))
             {
                 MessageBox.Show("Un proyecto no puede estar 'En Proceso' o 'Finalizado' si su fecha de inicio es futura (debe estar en 'Planeacion').");
+                LimpiarCampos();
                 return;
             }
             if (estadoSeleccionado == "Finalizado" && dtFecha_fin.Value > hoy)
             {
                 MessageBox.Show("Un proyecto no puede estar 'Finalizado' si su fecha de fin es una fecha futura.");
+                LimpiarCampos();
                 return;
             }
 
@@ -170,7 +177,8 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar el proyecto: " + ex.Message);
+                MessageBox.Show("Error al insertar el proyecto.");
+                LimpiarCampos();
             }
         }
 
@@ -179,30 +187,35 @@ namespace Constructora
             if (idSeleccionado == 0)
             {
                 MessageBox.Show("Seleccione un proyecto de la tabla para modificar.");
+                LimpiarCampos();
                 return;
             }
 
             if (logica.ExisteNombreProyectoOtro(txtNombre.Text, idSeleccionado))
             {
                 MessageBox.Show("Ya existe otro proyecto registrado con ese nombre.");
+                LimpiarCampos();
                 return;
             }
 
             if (logica.ExisteClaveCatastralOtroProyecto(txtClave.Text, idSeleccionado))
             {
                 MessageBox.Show("La clave catastral ya pertenece a otro proyecto.");
+                LimpiarCampos();
                 return;
             }
 
             if (dtFecha_inicio.Value > dtFecha_fin.Value)
             {
                 MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha de fin.");
+                LimpiarCampos();
                 return;
             }
 
             if (txtClave.Text.Length < 18 || txtClave.Text.Length > 24)
             {
                 MessageBox.Show("La clave catastral debe tener una longitud de entre 18 y 24 caracteres.");
+                LimpiarCampos();
                 return;
             }
 
@@ -211,11 +224,13 @@ namespace Constructora
             if (dtFecha_inicio.Value > hoy && (estadoSeleccionado == "En Proceso" || estadoSeleccionado == "Finalizado"))
             {
                 MessageBox.Show("Un proyecto no puede estar 'En Proceso' o 'Finalizado' si su fecha de inicio es futura (debe estar en 'Planeacion').");
+                LimpiarCampos();
                 return;
             }
             if (estadoSeleccionado == "Finalizado" && dtFecha_fin.Value > hoy)
             {
                 MessageBox.Show("Un proyecto no puede estar 'Finalizado' si su fecha de fin es una fecha futura.");
+                LimpiarCampos();
                 return;
             }
 
@@ -240,7 +255,8 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar el proyecto: " + ex.Message);
+                MessageBox.Show("Error al modificar el proyecto.");
+                LimpiarCampos();
             }
         }
 
@@ -260,7 +276,8 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el proyecto: " + ex.Message);
+                MessageBox.Show("Error al eliminar el proyecto.");
+                LimpiarCampos();
             }
         }
 

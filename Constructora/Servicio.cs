@@ -38,7 +38,8 @@ namespace Constructora
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                //MessageBox.Show("Escriba el nombre del servicio.");
+                MessageBox.Show("Escriba el nombre del servicio.");
+                LimpiarDatos();
                 return false;
             }
             return true;
@@ -51,18 +52,19 @@ namespace Constructora
                 if (!ValidarDatos())
                 {
                     MessageBox.Show("Error al agregar, ya exixte un servicio con etsre nombre");
+                    LimpiarDatos();
                     return;
                 }
                 dao.InsertarServicio(txtNombre.Text.Trim());
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { MessageBox.Show("Error al agregar servicio, ya existe un servicio con este nombre"); }
+            catch (Exception ex) { MessageBox.Show("Error al agregar servicio, ya existe un servicio con este nombre"); LimpiarDatos(); }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para modificar."); return; }
+            if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para modificar."); return; }
             try
             {
                 if (!ValidarDatos()) return;
@@ -70,12 +72,12 @@ namespace Constructora
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { MessageBox.Show("Error al agregar servicio, ya existe un servicio con este nombre"); }
+            catch (Exception ex) { MessageBox.Show("Error al agregar servicio, ya existe un servicio con este nombre"); LimpiarDatos(); }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            //if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para eliminar."); return; }
+            if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para eliminar."); return; }
             //if (MessageBox.Show("¿Desea eliminar el registro seleccionado?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             try
             {
@@ -86,9 +88,10 @@ namespace Constructora
             catch (SqlException ex)
             {
                 if (ex.Number == 547) MessageBox.Show("No se puede eliminar porque hay registros relacionados.");
-                else MessageBox.Show("Error al eliminar: " + ex.Message);
+                else MessageBox.Show("Error al eliminar.");
+                LimpiarDatos();
             }
-            catch (Exception ex) { MessageBox.Show("Error al eliminar: " + ex.Message); }
+            catch (Exception ex) { MessageBox.Show("Error al eliminar."); LimpiarDatos(); }
         }
 
         private void dgvServicio_CellClick(object sender, DataGridViewCellEventArgs e)

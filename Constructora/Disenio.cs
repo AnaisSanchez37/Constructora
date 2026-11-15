@@ -36,7 +36,7 @@ namespace Constructora
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { /* MessageBox.Show("Error al consultar datos: " + ex.Message); */ }
+            catch (Exception ex) { /*MessageBox.Show("Error al consultar datos: " + ex.Message); */ }
         }
 
         private void CargarTabla()
@@ -67,6 +67,7 @@ namespace Constructora
                 string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtDescripcion.Text))
             {
                 MessageBox.Show("Seleccione arquitecto y proyecto, y complete el nombre y la descripción.");
+                LimpiarDatos();
                 return false;
             }
             return true;
@@ -83,12 +84,14 @@ namespace Constructora
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { MessageBox.Show("Error al agregar el diseño.");}
+            catch (Exception ex) { MessageBox.Show("Error al agregar el diseño."); LimpiarDatos(); }
+
+            LimpiarDatos();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para modificar."); return; }
+            if (idSeleccionado == -1) { MessageBox.Show("Seleccione una fila para modificar."); LimpiarDatos(); return; }
             try
             {
                 if (!ValidarDatos()) return;
@@ -98,7 +101,9 @@ namespace Constructora
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { MessageBox.Show("Error al modificar el diseño: " + ex.Message); }
+            catch (Exception ex) { MessageBox.Show("Error al modificar el diseño."); LimpiarDatos(); }
+
+            LimpiarDatos();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -114,9 +119,31 @@ namespace Constructora
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 547) MessageBox.Show("No se puede eliminar el diseño porque tiene registros relacionados.");
-                else MessageBox.Show("Error al eliminar el diseño.");
+                if (ex.Number == 547)
+                {
+                    MessageBox.Show("No se puede eliminar el diseño porque tiene registros relacionados.");
+                    LimpiarDatos();
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar el diseño.");
+                    LimpiarDatos();
+                }
             }
+
+            LimpiarDatos();
+        }
+
+        private void btnVerProyectos_Click(object sender, EventArgs e)
+        {
+            Proyecto formProyecto = new Proyecto();
+            formProyecto.ShowDialog();
+        }
+
+        private void btnArquitectos_Click(object sender, EventArgs e)
+        {
+            Arquitecto formArqui = new Arquitecto();
+            formArqui.Show();
         }
 
         private void dgvDisenio_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -156,11 +183,11 @@ namespace Constructora
 
                 int idProyecto = Convert.ToInt32(cmbProyecto.SelectedValue);
 
-                int idCliente = dao.ConsultarArquitectoPorProyecto(idProyecto);
+                int idArquitecto = dao.ConsultarArquitectoPorProyecto(idProyecto);
 
-                if (idCliente != -1)
+                if (idArquitecto != -1)
                 {
-                    cmbArquitecto.SelectedValue = idCliente;
+                    cmbArquitecto.SelectedValue = idArquitecto;
                 }
             }
             finally

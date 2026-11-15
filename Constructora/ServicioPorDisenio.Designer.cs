@@ -38,6 +38,9 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvServicioPorDisenio = new System.Windows.Forms.DataGridView();
+            this.btnVerDisenios = new System.Windows.Forms.Button();
+            this.btnVerGastos = new System.Windows.Forms.Button();
+            this.btnVerProyectos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServicioPorDisenio)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,11 +134,44 @@
             this.dgvServicioPorDisenio.Size = new System.Drawing.Size(818, 518);
             this.dgvServicioPorDisenio.TabIndex = 9;
             // 
+            // btnVerDisenios
+            // 
+            this.btnVerDisenios.Location = new System.Drawing.Point(12, 448);
+            this.btnVerDisenios.Name = "btnVerDisenios";
+            this.btnVerDisenios.Size = new System.Drawing.Size(131, 30);
+            this.btnVerDisenios.TabIndex = 10;
+            this.btnVerDisenios.Text = "Ver diseños";
+            this.btnVerDisenios.UseVisualStyleBackColor = true;
+            this.btnVerDisenios.Click += new System.EventHandler(this.btnVerDisenios_Click);
+            // 
+            // btnVerGastos
+            // 
+            this.btnVerGastos.Location = new System.Drawing.Point(12, 484);
+            this.btnVerGastos.Name = "btnVerGastos";
+            this.btnVerGastos.Size = new System.Drawing.Size(131, 30);
+            this.btnVerGastos.TabIndex = 11;
+            this.btnVerGastos.Text = "Ver gastos";
+            this.btnVerGastos.UseVisualStyleBackColor = true;
+            this.btnVerGastos.Click += new System.EventHandler(this.btnVerGastos_Click);
+            // 
+            // btnVerProyectos
+            // 
+            this.btnVerProyectos.Location = new System.Drawing.Point(12, 520);
+            this.btnVerProyectos.Name = "btnVerProyectos";
+            this.btnVerProyectos.Size = new System.Drawing.Size(131, 30);
+            this.btnVerProyectos.TabIndex = 12;
+            this.btnVerProyectos.Text = "Ver proyectos";
+            this.btnVerProyectos.UseVisualStyleBackColor = true;
+            this.btnVerProyectos.Click += new System.EventHandler(this.btnVerProyectos_Click);
+            // 
             // ServicioPorDisenio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1104, 562);
+            this.Controls.Add(this.btnVerProyectos);
+            this.Controls.Add(this.btnVerGastos);
+            this.Controls.Add(this.btnVerDisenios);
             this.Controls.Add(this.dgvServicioPorDisenio);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
@@ -169,5 +205,8 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvServicioPorDisenio;
+        private System.Windows.Forms.Button btnVerDisenios;
+        private System.Windows.Forms.Button btnVerGastos;
+        private System.Windows.Forms.Button btnVerProyectos;
     }
 }

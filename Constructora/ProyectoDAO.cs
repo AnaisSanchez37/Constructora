@@ -25,8 +25,8 @@ namespace Constructora
                             P.FechaFin, 
                             P.ClaveCatastral, 
                             P.Estado, 
-                            P.Presupuesto, 
-                            P.CostoTotalProyecto 
+                            ISNULL(P.Presupuesto, 0) AS Presupuesto,           -- Si es null, muestra 0
+                            ISNULL(P.CostoTotalProyecto, 0) AS CostoTotalProyecto -- Si es null, muestra 0 
                         FROM InfoProyecto.Proyecto P
                         INNER JOIN InfoPersona.Cliente C ON P.IdCliente = C.IdCliente
                         INNER JOIN InfoPersona.Arquitecto A ON P.IdArquitecto = A.IdArquitecto";

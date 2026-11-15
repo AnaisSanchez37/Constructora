@@ -135,6 +135,12 @@ namespace Constructora
             }
         }
 
+        private void btnVerProyectos_Click(object sender, EventArgs e)
+        {
+            Proyecto formProyecto = new Proyecto();
+            formProyecto.ShowDialog();
+        }
+
         private void dgvPago_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -188,25 +194,28 @@ namespace Constructora
             if (cbCliente.SelectedIndex == -1 || cbProyecto.SelectedIndex == -1)
             {
                 MessageBox.Show("Selecciona un cliente y un proyecto.");
-
+                LimpiarDatos();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtMonto.Text))
             {
                 MessageBox.Show("Ingresa el monto del pago.");
+                LimpiarDatos();
                 return false;
             }
 
             if (!decimal.TryParse(txtMonto.Text, out monto))
             {
                 MessageBox.Show("Ingresa un monto válido.");
+                LimpiarDatos();
                 return false;
             }
 
             if (monto <= 1000)
             {
                 MessageBox.Show("El monto debe ser mayor a $1,000.00.");
+                LimpiarDatos();
                 return false;
             }
 
@@ -214,7 +223,7 @@ namespace Constructora
             if (decimal.Round(monto, 2) != monto)
             {
                 MessageBox.Show("El monto no puede tener más de dos decimales.");
-
+                LimpiarDatos();
                 return false;
             }
 

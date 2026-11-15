@@ -88,6 +88,7 @@ namespace Constructora
                 string.IsNullOrWhiteSpace(txtDuracion.Text) || !int.TryParse(txtDuracion.Text, out duracion) || duracion <= 0)
             {
                 MessageBox.Show("Por favor seleccione un diseño, un proveedor/servicio y escriba una duración válida mayor a 0.");
+                LimpiarCampos();
                 return;
             }
 
@@ -105,6 +106,7 @@ namespace Constructora
             catch (Exception ex)
             {
                 MessageBox.Show("Error al insertar.Datos duplicados.");
+                LimpiarCampos();
             }
         }
 
@@ -113,6 +115,7 @@ namespace Constructora
             if (idDisenioSeleccionadoOriginal == 0 || idPSSeleccionadoOriginal == 0)
             {
                 MessageBox.Show("Seleccione un registro de la tabla para modificar.");
+                LimpiarCampos();
                 return;
             }
 
@@ -120,6 +123,7 @@ namespace Constructora
             if (string.IsNullOrWhiteSpace(txtDuracion.Text) || !int.TryParse(txtDuracion.Text, out duracion) || duracion <= 0)
             {
                 MessageBox.Show("Ingrese una duración válida en número entero.");
+                LimpiarCampos();
                 return;
             }
 
@@ -137,6 +141,7 @@ namespace Constructora
             catch (Exception ex)
             {
                 MessageBox.Show("Error al modificar.");
+                LimpiarCampos();
             }
         }
 
@@ -145,6 +150,7 @@ namespace Constructora
             if (idDisenioSeleccionadoOriginal == 0 || idPSSeleccionadoOriginal == 0)
             {
                 MessageBox.Show("Seleccione un registro de la tabla para eliminar.");
+                LimpiarCampos();
                 return;
             }
 
@@ -158,9 +164,27 @@ namespace Constructora
             catch (Exception ex)
             {
                 MessageBox.Show("Error al eliminar.");
+                LimpiarCampos();
             }
         }
 
+        private void btnVerGastos_Click(object sender, EventArgs e)
+        {
+            Gasto formGasto = new Gasto();
+            formGasto.ShowDialog();
+        }
+
+        private void btnVerProyectos_Click(object sender, EventArgs e)
+        {
+            Proyecto formProyecto = new Proyecto();
+            formProyecto.ShowDialog();
+        }
+
+        private void btnVerDisenios_Click(object sender, EventArgs e)
+        {
+            Disenio formDisenio = new Disenio();
+            formDisenio.Show();
+        }
         private void LimpiarCampos()
         {
             cmbDisenio.SelectedIndex = -1;

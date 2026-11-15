@@ -115,7 +115,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(667, 410);
+            this.dataGridView1.Size = new System.Drawing.Size(979, 410);
             this.dataGridView1.TabIndex = 8;
             // 
             // Insertar
@@ -159,7 +159,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 475);
+            this.ClientSize = new System.Drawing.Size(1340, 475);
             this.Controls.Add(this.CalenderFecha);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.Modificar);

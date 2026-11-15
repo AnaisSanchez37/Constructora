@@ -91,7 +91,7 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al consultar datos: " + ex.Message);
+                MessageBox.Show("Error al consultar datos.");
             }
         }
 
@@ -113,14 +113,15 @@ namespace Constructora
                 string.IsNullOrWhiteSpace(txtDireccion.Text))
             {
                 MessageBox.Show("Por favor rellene los campos...");
+                LimpiarCampos();
                 return false;
             }
 
             if (!Regex.IsMatch(txtTelefono.Text.Trim(), @"^[0-9]{10}$"))
             {
-                MessageBox.Show(
-                      "El teléfono debe tener 10 dígitos, sin espacios ni guiones.");
-                  return false;
+                MessageBox.Show("El teléfono debe tener 10 dígitos, sin espacios ni guiones.");
+                LimpiarCampos();
+                return false;
             }
 
             return true;
@@ -152,6 +153,7 @@ namespace Constructora
             if (cDAO.ExisteTelefono(txtTelefono.Text.Trim()))
             {
                 MessageBox.Show("Este teléfono ya está registrado.");
+                LimpiarCampos();
                 return;
             }
 
@@ -170,14 +172,12 @@ namespace Constructora
                 when (ex.Number == 2627 || ex.Number == 2601)
             {
 
-                MessageBox.Show(
-                    "El teléfono ya está registrado en otro cliente.");
+                MessageBox.Show("El teléfono ya está registrado en otro cliente.");
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(
-                    "Error al insertar el cliente: " + ex.Message);
+                MessageBox.Show("Error al insertar el cliente: ");
             }
         }
 
@@ -185,7 +185,8 @@ namespace Constructora
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {   
-                MessageBox.Show("Seleccione un cliente...");
+                MessageBox.Show("Seleccione un cliente.");
+                LimpiarCampos();
                 return;
             }
 
@@ -199,6 +200,7 @@ namespace Constructora
             if (cDAO.ExisteTelefonoOtroCliente(txtTelefono.Text.Trim(), idCliente))
             {
                 MessageBox.Show("El teléfono ya está registrado por otro cliente.");
+                LimpiarCampos();
                 return;
             }
 
@@ -218,15 +220,15 @@ namespace Constructora
                 when (ex.Number == 2627 || ex.Number == 2601)
             {
 
-                MessageBox.Show(
-                    "El teléfono ya está registrado en otro cliente.");
+                MessageBox.Show("El teléfono ya está registrado en otro cliente.");
+                LimpiarCampos();
 
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(
-                    "Error al modificar el cliente: " + ex.Message);
+                MessageBox.Show("Error al modificar el cliente. ");
+                LimpiarCampos();
 
             }
         }
@@ -236,7 +238,7 @@ namespace Constructora
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 
-                MessageBox.Show("Seleccione un cliente...");
+                MessageBox.Show("Seleccione un cliente.");
                 return;
                 
             }
@@ -255,9 +257,9 @@ namespace Constructora
             catch (Exception ex)
             {
                 
-                MessageBox.Show(
-                    "Error al eliminar el cliente: " + ex.Message);
-                
+                MessageBox.Show("Error al eliminar el cliente.");
+                LimpiarCampos();
+
             }
         }
 

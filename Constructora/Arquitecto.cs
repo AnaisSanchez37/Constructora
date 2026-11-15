@@ -81,18 +81,21 @@ namespace Constructora
                 string.IsNullOrWhiteSpace(txtSueldoB.Text))
             {
                 MessageBox.Show("Por favor rellene todos los campos...");
+                LimpiarCampos();
                 return;
             }
 
             if (txtTelefono.Text.Length != 10)
             {
                 MessageBox.Show("El campo debe tener exactamente 10 dígitos.");
+                LimpiarCampos();
                 return;
             }
 
             if (logica.ExisteTelefono(txtTelefono.Text))
             {
                 MessageBox.Show("Este telefono ya está registrado.");
+                LimpiarCampos();
                 return;
             }
 
@@ -112,7 +115,8 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar el arquitecto: " + ex.Message);
+                MessageBox.Show("Error al insertar el arquitecto. ");
+                LimpiarCampos();
             }
         }
 
@@ -121,18 +125,21 @@ namespace Constructora
             if (idSeleccionado == 0 || string.IsNullOrWhiteSpace(txtNombreA.Text))
             {
                 MessageBox.Show("Por favor selecciona un arquitecto de la tabla y modifica los campos necesarios.");
+                LimpiarCampos();
                 return;
             }
 
             if (txtTelefono.Text.Length != 10)
             {
                 MessageBox.Show("El campo debe tener exactamente 10 dígitos.");
+                LimpiarCampos();
                 return;
             }
 
             if (logica.ExisteTelefonoOtroArquitecto(txtTelefono.Text, idSeleccionado))
             {
                 MessageBox.Show("El teléfono ya está registrado por otro arquitecto.");
+                LimpiarCampos();
                 return;
             }
 
@@ -153,7 +160,8 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar el arquitecto: " + ex.Message);
+                MessageBox.Show("Error al modificar el arquitecto.");
+                LimpiarCampos();
             }
         }
 
@@ -162,6 +170,7 @@ namespace Constructora
             if (idSeleccionado == 0)
             {
                 MessageBox.Show("Por favor selecciona un arquitecto de la tabla para eliminar.");
+                LimpiarCampos();
                 return;
             }
 
@@ -173,7 +182,8 @@ namespace Constructora
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el arquitecto: " + ex.Message);
+                MessageBox.Show("Error al eliminar el arquitecto.");
+                LimpiarCampos();
             }
         }
         private void LimpiarCampos()
