@@ -51,12 +51,16 @@ namespace Constructora
 
             // Mostrar la fecha registrada.
             dgvGasto.Columns["FechaGasto"].DefaultCellStyle.Format = "dd/MM/yyyy";
-
             dgvGasto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
             dgvGasto.Columns["IdGasto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
             dgvGasto.Columns["IdGasto"].Width = 45;
+            dgvGasto.Columns["Monto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvGasto.Columns["Monto"].Width = 70;
+            dgvGasto.Columns["FechaGasto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvGasto.Columns["FechaGasto"].Width = 70;
+
+            dgvGasto.DefaultCellStyle.WrapMode = DataGridViewTriState.True; // Nuevo
+            dgvGasto.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells; // Nuevo
 
             dgvGasto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -185,6 +189,12 @@ namespace Constructora
                 CargarTabla();
                 LimpiarDatos();
             }
+        }
+
+        private void btnVerProyectos_Click(object sender, EventArgs e)
+        {
+            Proyecto formProyecto = new Proyecto();
+            formProyecto.ShowDialog();
         }
 
         private void dgvGasto_CellClick(object sender, DataGridViewCellEventArgs e)

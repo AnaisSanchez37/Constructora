@@ -21,16 +21,18 @@ namespace Constructora
                 new SqlConnection(cadenaConexion))
             {
                 string consulta = @"
-                    SELECT
-                        G.IdGasto,
-                        G.IdDisenio,
-                        D.NombreDisenio,
-                        G.Concepto,
-                        G.Monto,
-                        G.FechaGasto
-                    FROM InfoProyecto.Gasto G
-                    INNER JOIN InfoProyecto.Disenio D
-                        ON G.IdDisenio = D.IdDisenio";
+                SELECT
+                G.IdGasto,
+                G.IdDisenio,
+                CONCAT('Diseño: ', D.NombreDisenio, ' - Proyecto: ', P.NombreProyecto, ' $', FORMAT(D.CostoDisenio, 'N2')) AS NombreDisenio,
+                G.Concepto,
+                G.Monto,
+                G.FechaGasto
+                FROM InfoProyecto.Gasto G
+                INNER JOIN InfoProyecto.Disenio D
+                ON G.IdDisenio = D.IdDisenio
+                INNER JOIN InfoProyecto.Proyecto P
+                ON D.IdProyecto = P.IdProyecto";
 
                 SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion);
 
@@ -47,12 +49,12 @@ namespace Constructora
             using (SqlConnection conexion =
                 new SqlConnection(cadenaConexion))
             {
-                string consulta = @"
-                    SELECT
-                        IdDisenio,
-                        CONCAT(IdDisenio, ' - ', NombreDisenio)
-                            AS Disenio
-                    FROM InfoProyecto.Disenio";
+                string consulta = @" SELECT
+                D.IdDisenio,
+                CONCAT('Diseño: ', D.NombreDisenio, ' - Proyecto: ', P.NombreProyecto, ' $', FORMAT(D.CostoDisenio, 'N2')) AS Disenio
+                FROM InfoProyecto.Disenio D
+                INNER JOIN InfoProyecto.Proyecto P 
+                ON D.IdProyecto = P.IdProyecto";
 
                 SqlDataAdapter adaptador = new SqlDataAdapter(consulta, conexion);
 

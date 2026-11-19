@@ -36,7 +36,8 @@ namespace Constructora
                 CargarTabla();
                 LimpiarDatos();
             }
-            catch (Exception ex) { /*MessageBox.Show("Error al consultar datos: " + ex.Message); */ }
+            catch (Exception ex) { MessageBox.Show("Error al consultar datos.");}
+            LimpiarDatos();
         }
 
         private void CargarTabla()

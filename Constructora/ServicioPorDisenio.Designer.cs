@@ -140,7 +140,7 @@
             this.btnVerDisenios.Name = "btnVerDisenios";
             this.btnVerDisenios.Size = new System.Drawing.Size(131, 30);
             this.btnVerDisenios.TabIndex = 10;
-            this.btnVerDisenios.Text = "Ver diseños";
+            this.btnVerDisenios.Text = "Ver Diseños";
             this.btnVerDisenios.UseVisualStyleBackColor = true;
             this.btnVerDisenios.Click += new System.EventHandler(this.btnVerDisenios_Click);
             // 
@@ -150,7 +150,7 @@
             this.btnVerGastos.Name = "btnVerGastos";
             this.btnVerGastos.Size = new System.Drawing.Size(131, 30);
             this.btnVerGastos.TabIndex = 11;
-            this.btnVerGastos.Text = "Ver gastos";
+            this.btnVerGastos.Text = "Ver Gastos";
             this.btnVerGastos.UseVisualStyleBackColor = true;
             this.btnVerGastos.Click += new System.EventHandler(this.btnVerGastos_Click);
             // 
@@ -160,7 +160,7 @@
             this.btnVerProyectos.Name = "btnVerProyectos";
             this.btnVerProyectos.Size = new System.Drawing.Size(131, 30);
             this.btnVerProyectos.TabIndex = 12;
-            this.btnVerProyectos.Text = "Ver proyectos";
+            this.btnVerProyectos.Text = "Ver Proyectos";
             this.btnVerProyectos.UseVisualStyleBackColor = true;
             this.btnVerProyectos.Click += new System.EventHandler(this.btnVerProyectos_Click);
             // 

@@ -56,10 +56,18 @@ namespace Constructora
 
             dgvServicioPorDisenio.Columns["CostoServicioDisenio"].DefaultCellStyle.Format = "N2";
 
+            dgvServicioPorDisenio.Columns["Duracion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvServicioPorDisenio.Columns["Duracion"].Width = 70;
+            dgvServicioPorDisenio.Columns["CostoServicioDisenio"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvServicioPorDisenio.Columns["CostoServicioDisenio"].Width = 75;
+            dgvServicioPorDisenio.Columns["Fecha"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvServicioPorDisenio.Columns["Fecha"].Width = 75;
+
             dgvServicioPorDisenio.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvServicioPorDisenio.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvServicioPorDisenio.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvServicioPorDisenio.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             dgvServicioPorDisenio.MultiSelect = false;
         }
 

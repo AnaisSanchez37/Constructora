@@ -15,11 +15,12 @@ namespace Constructora
         {
             DataTable tabla = new DataTable();
             string query = @"SELECT SPD.IdDisenio, SPD.IdProveedorServicio,
-                            CONCAT(D.IdDisenio, ' - ', D.NombreDisenio) AS NombreDisenio,
+                            CONCAT('Diseño: ', D.NombreDisenio, ' - Proyecto: ', PROY.NombreProyecto, ' $', FORMAT(D.CostoDisenio, 'N2')) AS NombreDisenio,
                             CONCAT(PS.IdProveedorServicio, S.IdServicio, '--->', S.NombreServicio, '[', P.NombreProveedor ,']') AS NombreProveedorServicio, 
                             SPD.Fecha, SPD.Duracion, SPD.CostoServicioDisenio 
                             FROM InfoProyecto.ServicioPorDisenio SPD
                             INNER JOIN InfoProyecto.Disenio D ON D.IdDisenio = SPD.IdDisenio
+                            INNER JOIN InfoProyecto.Proyecto PROY ON D.IdProyecto = PROY.IdProyecto
                             INNER JOIN InfoProyecto.ProveedorServicio PS ON PS.IdProveedorServicio = SPD.IdProveedorServicio
                             INNER JOIN InfoPersona.Proveedor P ON P.IdProveedor = PS.IdProveedor
                             INNER JOIN InfoProyecto.Servicio S ON S.IdServicio = PS.IdServicio";
@@ -33,8 +34,10 @@ namespace Constructora
 
         public DataTable ObtenerDisenios()
         {
-            // Concatenacion por modificar
-            string consulta = "SELECT IdDisenio, CONCAT(IdDisenio, ' - ', NombreDisenio) AS NombreDisenio FROM InfoProyecto.Disenio";
+            string consulta = @"SELECT D.IdDisenio, 
+                                CONCAT('Diseño: ', D.NombreDisenio, ' - Proyecto: ', P.NombreProyecto, ' $', FORMAT(D.CostoDisenio, 'N2')) AS NombreDisenio 
+                                FROM InfoProyecto.Disenio D
+                                INNER JOIN InfoProyecto.Proyecto P ON D.IdProyecto = P.IdProyecto";
             using (SqlConnection con = new SqlConnection(cadenaConexion))
             using (SqlDataAdapter da = new SqlDataAdapter(consulta, con))
             {
@@ -45,7 +48,7 @@ namespace Constructora
         }
         public DataTable ObtenerProveedorServicios()
         {
-            // Concactenacion por modificar
+            
             string consulta = @"SELECT PS.IdProveedorServicio, 
                                 CONCAT(PS.IdProveedorServicio, S.IdServicio, '--->', S.NombreServicio, '[', P.NombreProveedor ,']') AS DescripcionPS
                                 FROM InfoProyecto.ProveedorServicio PS

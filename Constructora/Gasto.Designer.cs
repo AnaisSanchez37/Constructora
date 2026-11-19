@@ -38,6 +38,7 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvGasto = new System.Windows.Forms.DataGridView();
+            this.btnVerProyectos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGasto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,11 +137,22 @@
             this.dgvGasto.Size = new System.Drawing.Size(887, 411);
             this.dgvGasto.TabIndex = 9;
             // 
+            // btnVerProyectos
+            // 
+            this.btnVerProyectos.Location = new System.Drawing.Point(14, 138);
+            this.btnVerProyectos.Name = "btnVerProyectos";
+            this.btnVerProyectos.Size = new System.Drawing.Size(116, 28);
+            this.btnVerProyectos.TabIndex = 10;
+            this.btnVerProyectos.Text = "Ver Proyectos";
+            this.btnVerProyectos.UseVisualStyleBackColor = true;
+            this.btnVerProyectos.Click += new System.EventHandler(this.btnVerProyectos_Click);
+            // 
             // Gasto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 600);
+            this.Controls.Add(this.btnVerProyectos);
             this.Controls.Add(this.dgvGasto);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvGasto;
+        private System.Windows.Forms.Button btnVerProyectos;
     }
 }
